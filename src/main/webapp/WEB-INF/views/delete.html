@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Customer</title>
+</head>
+
+<body>
+    <h3>Are you sure you want to delete this customer?</h3>
+
+    <p><a th:href="@{/customers}">Cancel and back to list</a></p>
+
+    <form th:action="@{/customers/delete}" th:object="${customer}" method="POST">
+        <!-- Trường ẩn lưu ID để gửi về Controller xử lý xóa -->
+        <input type="hidden" th:field="*{id}" />
+
+        <table border="0">
+            <tr>
+                <td>Name:</td>
+                <td th:text="*{name}"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td th:text="*{email}"></td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td th:text="*{address}"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Delete Customer" onclick="return confirm('Are you completely sure?')" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
